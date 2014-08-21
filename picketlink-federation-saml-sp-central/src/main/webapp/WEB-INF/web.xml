@@ -3,9 +3,19 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-    <display-name>PicketLink Sales Service Provider</display-name>
+	<display-name>PicketLink Sales Service Provider</display-name>
 
-    <description>PicketLink Service Provider With a Basic Configuration using SAML HTTP POST Binding</description>
+	<description>PicketLink Service Provider With a Basic Configuration using SAML HTTP POST Binding</description>
+
+	<filter>
+		<filter-name>picketlink</filter-name>
+		<filter-class>org.picketlink.utils.PicketlinkUtil</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>picketlink</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<!-- Define a Security Constraint on this Application -->
 	<security-constraint>
@@ -34,8 +44,8 @@
 		</web-resource-collection>
 	</security-constraint>
 
-    <!-- Define the Login Configuration for this Application -->
-    <login-config>
+	<!-- Define the Login Configuration for this Application -->
+	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>Central Application</realm-name>
 		<form-login-config>
