@@ -34,11 +34,10 @@ public class PicketlinkUtil implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-    	@SuppressWarnings("unused")
 		HttpSession session = ((HttpServletRequest) request).getSession();
     	
     	// Request pro destino (SP)
-    	String html = Request.Get("http://localhost:8080/sales-post").execute().handleResponse(new ResponseHandler<String>() {
+    	String html = Request.Get("http://localhost:8080/sales-post/").execute().handleResponse(new ResponseHandler<String>() {
             @Override            
             public String handleResponse(HttpResponse httpResponse) throws ClientProtocolException, IOException {
                 headers = httpResponse.getAllHeaders();
@@ -49,9 +48,16 @@ public class PicketlinkUtil implements Filter {
 
         String SAMLRequest = getAttributeValueFromHtml(html, "SAMLRequest");
         String actionURL = getAttributeActionFromHtml(html);
+        
 
         // Request pro IDP com o SAMLRequest
-        Request req = Request.Post(actionURL).bodyForm(Form.form().add("SAMLRequest", SAMLRequest).add("SUBMIT", "CONTINUE").build());
+        Request req = Request.Post(actionURL).bodyForm(Form.form().add("SAMLRequest", SAMLRequest).build());
+        req.addHeader("content-type","application/x-www-form-urlencoded; charset=UTF-8");
+        req.addHeader("origin", "http://localhost:8080");
+        req.addHeader("accept", "*/*");
+        req.addHeader("host","localhost:8080");
+        req.addHeader("accept-encoding","gzip,deflate,sdch");
+        
 //        for (Header header : headers) {
 //			req.addHeader(header);
 //		}
@@ -65,10 +71,10 @@ public class PicketlinkUtil implements Filter {
         	
 		});
         
-    	System.out.println("-------------------------------------");
-    	System.out.println("LOGANDO!");
-    	System.out.println("LOGANDO!");
-    	System.out.println("-------------------------------------");
+//    	System.out.println("-------------------------------------");
+//    	System.out.println("LOGANDO!");
+//    	System.out.println("LOGANDO!");
+//    	System.out.println("-------------------------------------");
     	
         filterChain.doFilter(request, response);
     }
@@ -131,8 +137,8 @@ public class PicketlinkUtil implements Filter {
         return doc.select("form").attr("action");
     }
 
-    private String mountURL(ServletRequest request, String context){
-        return request.getScheme() +"://"+ request.getServerName() + ":"+ request.getServerPort() + "/" + context + "/";
+    private String getUrl(ServletRequest request){
+        return request.getScheme() +"://"+ request.getServerName() + ":"+ request.getServerPort() + "/";
     }
 
     @Override

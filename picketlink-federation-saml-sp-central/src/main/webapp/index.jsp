@@ -9,6 +9,7 @@
 <div align="center">
     <h1>Central</h1>
     <br/>
+    <button id="botao" value="Botao">Botao</button>
     <div id="another-sp-content" />
 </div>
 </body>

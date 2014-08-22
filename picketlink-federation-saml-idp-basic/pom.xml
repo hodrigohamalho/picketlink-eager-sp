@@ -41,6 +41,8 @@
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
+        
+		<picketlink.version>2.6.0.Final</picketlink.version>
     </properties>
 
     <build>
@@ -95,5 +97,34 @@
             </build>
         </profile>
     </profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Picketlink -->
+			<dependency>
+				<groupId>org.picketlink</groupId>
+				<artifactId>picketlink-api</artifactId>
+				<scope>provided</scope>
+				<version>${picketlink.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.picketlink</groupId>
+				<artifactId>picketlink-impl</artifactId>
+				<scope>provided</scope>
+				<version>${picketlink.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.picketlink</groupId>
+				<artifactId>picketlink-federation</artifactId>
+				<scope>provided</scope>
+				<version>${picketlink.version}</version>
+			</dependency>
+	</dependencies>
 
 </project>
