@@ -6,21 +6,16 @@
 		</Trust>
 	</PicketLinkIDP>
 	<Handlers xmlns="urn:picketlink:identity-federation:handler:config:2.1">
-		<Handler
-			class="org.picketlink.identity.federation.web.handlers.saml2.SAML2IssuerTrustHandler" />
-
-		<Handler
-			class="org.picketlink.identity.federation.web.handlers.saml2.SAML2AuthenticationHandler" />
-		<Handler
-			class="org.picketlink.identity.federation.web.handlers.saml2.RolesGenerationHandler" />
-		<Handler
-			class="org.picketlink.identity.federation.web.handlers.saml2.SAML2LogOutHandler" />
-		<Handler
-			class="org.picketlink.identity.federation.web.handlers.saml2.SAML2AttributeHandler">
+		<Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2AttributeHandler">
 			<Option Key="ATTRIBUTE_MANAGER" Value="org.picketlink.handler.SAML2CustomAttributeHandler"></Option>
-			<Option Key="ATTRIBUTE_KEYS" Value="sessionID,id" />
+			<Option Key="ATTRIBUTE_KEYS" Value="sessionID" />
 		</Handler>
+		<Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2IssuerTrustHandler" />
+		<Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2AuthenticationHandler" />
+		<Handler class="org.picketlink.identity.federation.web.handlers.saml2.RolesGenerationHandler" />
+		<Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2LogOutHandler" />
 	</Handlers>
+	
 	<!-- The configuration bellow defines a token timeout and a clock skew. 
 		Both configurations will be used during the SAML Assertion creation. This 
 		configuration is optional. It is defined only to show you how to set the 
