@@ -6,9 +6,14 @@
 <body>
 <div align="center">
     <h1>Central</h1>
+    <hr/>
     <br/>
-    <button id="botao" value="Botao">Botao</button>
-    <div id="another-sp-content" />
+    
+    <button id="button-ajax" value="Get sales-post AJAX">Get sales-post AJAX</button>
+    <a href="<%=request.getContextPath()%>/rest/auth/sales-post">
+    	<button id="button-java" value="Get sales-post Java">Get sales-post Java</button>
+    </a>
+    <div id="another-sp-content"></div>
 </div>
 </body>
 </html>

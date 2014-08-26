@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.picketlink.identity.federation.core.interfaces.AttributeManager;
 
+/**
+ * @author Rodrigo Ramalho da Silva
+ * 		   hodrigohamalho@gmail.com
+ */
 public class SAML2CustomAttributeHandler implements AttributeManager{
 
 	@Override

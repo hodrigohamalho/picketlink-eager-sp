@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 /**
- * Created by hodrigohamalho@gmail.com on 23/07/14.
+ * @author Rodrigo Ramalho da Silva
+ * 		   hodrigohamalho@gmail.com
  */
 public class IOUtils {
 

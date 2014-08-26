@@ -3,12 +3,31 @@
  */
 
 $( document ).ready(function() {
-	$("#botao").click(function(){
+	
+	$("#button-java").click(function(e){
+		e.preventDefault();
+		var url = $(this).parent().attr("href");
+	
+		$.ajax({
+	        url: url,
+	        type: "GET"
+	    }).done(function(result) {
+	    	$("#another-sp-content").html(result);
+	    })
+	});
+	
+	$("#button-ajax").click(function(){
 	    // SEND GET Request to SP
 	    $.ajax({
 	        url: "/sales-post/",
 	        type: "GET"
 	    }).done(function(result) {
+	    	
+	    	if (result.indexOf("SAMLRequest") == -1){
+	    		$("#another-sp-content").html(result);
+	    		return;
+	    	}
+	    	
 	        var form = $(result)[1];
 	        var action = $(form).attr("action");
 	        var samlRequestName = $(form).find("input").attr("name");
@@ -41,4 +60,5 @@ $( document ).ready(function() {
 	        });
 	    });
 	});
+	
 });
